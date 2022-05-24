@@ -2,14 +2,12 @@ import ListItem from "../components/advice-items/ListItem"
 import fs from "fs/promises"
 import path from "path"
 
-const list = (props) => {
-	console.log(props.adviceAll)
-
+const list = ({ adviceAll }) => {
 	return (
-		<div>
-			{/* {adviceAll.advice.map((advice, i) => {
+		<div className='w-1/2'>
+			{adviceAll.map((advice, i) => {
 				return <ListItem key={"advice" + i} advice={advice} />
-			})} */}
+			})}
 		</div>
 	)
 }
@@ -18,8 +16,6 @@ export const getStaticProps = async () => {
 	const filePath = path.join(process.cwd(), "data", "advice.json")
 	const jsonData = await fs.readFile(filePath)
 	const advice = await JSON.parse(jsonData)
-
-	console.log(advice)
 
 	return {
 		props: {
