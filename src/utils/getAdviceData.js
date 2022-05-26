@@ -2,7 +2,7 @@ import fs from "fs/promises"
 import path from "path"
 
 export default async function getAdviceData() {
-	const filePath = path.join(process.cwd(), "data", "advice-v2.json")
+	const filePath = path.join(process.cwd(), "src", "data", "advice-v2.json")
 	const jsonData = await fs.readFile(filePath)
 	const advice = await JSON.parse(jsonData)
 	console.log(advice)
