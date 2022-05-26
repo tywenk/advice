@@ -1,6 +1,5 @@
 import ListItem from "../components/advice-items/ListItem"
-import fs from "fs/promises"
-import path from "path"
+import getAdviceData from "../utils/getAdviceData"
 
 const list = ({ adviceAll }) => {
 	return (
@@ -17,9 +16,7 @@ const list = ({ adviceAll }) => {
 }
 
 export const getStaticProps = async () => {
-	const filePath = path.join(process.cwd(), "data", "advice.json")
-	const jsonData = await fs.readFile(filePath)
-	const advice = await JSON.parse(jsonData)
+	const advice = await getAdviceData()
 
 	return {
 		props: {

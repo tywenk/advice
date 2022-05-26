@@ -6,17 +6,15 @@ const ListItem = ({ advice }) => {
 
 	const mouseEnter = () => {
 		setIsHover(true)
-		console.log("enter")
 	}
 
 	const mouseLeave = () => {
 		setIsHover(false)
-		console.log("exit")
 	}
 	return (
 		<div onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
-			<li className='hover:underline hover:cursor-pointer'>{advice}</li>
-			{isHover && <HoverOptions toCopy={advice.toString()} />}
+			<li className='hover:underline hover:cursor-pointer'>{advice.text}</li>
+			{isHover && <HoverOptions toCopy={advice.text.toString()} />}
 		</div>
 	)
 }
