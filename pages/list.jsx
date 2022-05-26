@@ -6,7 +6,11 @@ const list = ({ adviceAll }) => {
 	return (
 		<div className='w-1/2'>
 			{adviceAll.map((advice, i) => {
-				return <ListItem key={"advice" + i} advice={advice} />
+				return (
+					<div key={"advice" + i}>
+						<ListItem advice={advice} />
+					</div>
+				)
 			})}
 		</div>
 	)
