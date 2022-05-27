@@ -15,12 +15,12 @@ const list = ({ adviceAll }) => {
 	)
 }
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
 	const advice = await getAdviceData()
 
 	return {
 		props: {
-			adviceAll: advice.advice,
+			adviceAll: advice,
 		},
 	}
 }
