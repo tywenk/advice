@@ -2,6 +2,8 @@ import ListItem from "../components/advice-items/ListItem"
 import getAdviceData from "../utils/getAdviceData"
 
 const list = ({ adviceAll }) => {
+	if (adviceAll.length < 0) return <div>Loading...</div>
+
 	return (
 		<div className='w-1/2'>
 			{adviceAll.map((advice, i) => {

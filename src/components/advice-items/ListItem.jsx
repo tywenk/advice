@@ -14,7 +14,7 @@ const ListItem = ({ advice }) => {
 	return (
 		<div onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
 			<li className='hover:underline hover:cursor-pointer'>{advice.text}</li>
-			{isHover && <HoverOptions toCopy={advice.text.toString()} />}
+			{isHover && <HoverOptions text={advice.text} stars={advice.stars} />}
 		</div>
 	)
 }
