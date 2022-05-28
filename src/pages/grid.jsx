@@ -1,5 +1,5 @@
 import GridItem from "../components/advice-items/GridItem"
-import getAdviceData from "../utils/getAdviceData"
+import { getAllAdviceData } from "@utils/adviceData"
 
 const grid = ({ adviceAll }) => {
 	if (adviceAll.length < 0) return <div>Loading...</div>
@@ -14,7 +14,7 @@ const grid = ({ adviceAll }) => {
 }
 
 export const getServerSideProps = async () => {
-	const advice = await getAdviceData()
+	const advice = await getAllAdviceData()
 
 	return {
 		props: {

@@ -1,5 +1,5 @@
 import ListItem from "../components/advice-items/ListItem"
-import getAdviceData from "../utils/getAdviceData"
+import { getAllAdviceData } from "@utils/adviceData"
 
 const list = ({ adviceAll }) => {
 	if (adviceAll.length < 0) return <div>Loading...</div>
@@ -18,7 +18,7 @@ const list = ({ adviceAll }) => {
 }
 
 export const getServerSideProps = async () => {
-	const advice = await getAdviceData()
+	const advice = await getAllAdviceData()
 
 	return {
 		props: {

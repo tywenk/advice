@@ -1,11 +1,16 @@
 import CopyButton from "@components/buttons/CopyButton.jsx"
-import { getDatabase, ref } from "firebase/database"
+import { incrementStar } from "@utils/adviceData"
 
-const HoverOptions = ({ text, stars }) => {
+const HoverOptions = ({ text, stars, id }) => {
+	const handleStar = () => {
+		const updated = incrementStar(text, stars, id)
+		console.log(updated)
+	}
+
 	return (
 		<div className='flex flex-row gap-2'>
 			<CopyButton toCopy={text} />
-			<div>Likes ({stars})</div>
+			<button onClick={handleStar}>Likes ({stars})</button>
 		</div>
 	)
 }
