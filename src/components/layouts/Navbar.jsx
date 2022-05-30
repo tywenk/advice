@@ -2,7 +2,7 @@ import Link from "next/link"
 
 const Navbar = () => {
 	return (
-		<div className='bg-red-100 w-full flex justify-around'>
+		<div className='flex justify-center w-full gap-10 bg-red-100'>
 			<Link href='/'>
 				<a>Home</a>
 			</Link>
@@ -12,6 +12,7 @@ const Navbar = () => {
 			<Link href='/grid'>
 				<a>Grid</a>
 			</Link>
+			<Link href='/about'>?</Link>
 		</div>
 	)
 }

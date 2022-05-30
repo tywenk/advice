@@ -1,16 +1,24 @@
 import CopyButton from "@components/buttons/CopyButton.jsx"
 import { incrementStar } from "@utils/adviceData"
+import { useState } from "react"
 
 const HoverOptions = ({ text, stars, id }) => {
-	const handleStar = () => {
-		const updated = incrementStar(text, stars, id)
-		console.log(updated)
+	const [starCount, setStarCount] = useState(stars)
+
+	const handleStar = async () => {
+		try {
+			const updated = incrementStar(text, starCount, id)
+			const res = await updated
+			setStarCount((starCount) => starCount + 1)
+		} catch (err) {
+			console.log(err)
+		}
 	}
 
 	return (
 		<div className='flex flex-row gap-2'>
 			<CopyButton toCopy={text} />
-			<button onClick={handleStar}>Likes ({stars})</button>
+			<button onClick={handleStar}>Star ({starCount})</button>
 		</div>
 	)
 }

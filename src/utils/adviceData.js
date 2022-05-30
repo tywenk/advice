@@ -17,6 +17,13 @@ export const getAllAdviceData = async () => {
 	return advice
 }
 
+export const getOneAdviceData = async (id) => {
+	let advice = {}
+	const adviceRef = ref(db, "advice/" + id.toString())
+
+	return advice
+}
+
 export const incrementStar = (text, stars, id) => {
 	const updates = {}
 	updates["/advice/" + id] = {

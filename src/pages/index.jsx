@@ -1,7 +1,17 @@
-import firebase from "../firebase/initFirebase"
+import RandomItem from "@components/advice-items/RandomItem"
 
-firebase()
+export default function Home({ advice }) {
+	return (
+		<div className='flex justify-center w-full'>
+			<div className='flex flex-col w-1/2 gap-4'>
+				<RandomItem advice={advice} />
+			</div>
+		</div>
+	)
+}
 
-export default function Home() {
-	return <div>Main page</div>
+export const getStaticProps = async () => {
+	return {
+		props: { advice: {} },
+	}
 }
