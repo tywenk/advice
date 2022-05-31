@@ -1,41 +1,34 @@
-import GridItem from "./GridItem"
+import SingleItem from "./SingleItem"
 import RandomAdviceButton from "../buttons/RandomAdviceButton"
-import { useState, useMemo } from "react"
 import { getOneAdviceData } from "@utils/adviceData"
-import { shuffle } from "lodash"
 
-const RandomItem = ({ advice }) => {
-	const [currentAdvice, setCurrentAdvice] = useState(advice)
+import { useState, useEffect } from "react"
+
+const RandomItem = ({ arr }) => {
+	const [currentAdvice, setCurrentAdvice] = useState({})
 	const [index, setIndex] = useState(0)
 	const [reset, setReset] = useState(false)
 
-	const lengthAdvice = 10
+	useEffect(() => {
+		const fetchAdvice = async () => {
+			if (index > 401) {
+				setIndex(0)
+			}
 
-	const randomArray = useMemo(() => {
-		let arr = []
-		//402 is number of advice
-		for (let i = 0; i <= lengthAdvice; i++) {
-			arr.push(i)
+			const id = arr[index]
+			const newAdvice = await getOneAdviceData(id)
+			setCurrentAdvice(newAdvice)
 		}
 
-		return shuffle(arr)
-	}, [])
-
-	const randomAdviceId = () => {
-		if (index > lengthAdvice) {
-			setIndex(0)
+		if (arr) {
+			fetchAdvice()
 		}
-		const id = randomArray[index]
-		const newAdvice = getOneAdviceData(id)
-		setCurrentAdvice(newAdvice)
-		setIndex((index) => (index += 1))
-	}
+	}, [arr, index])
 
 	return (
 		<div>
-			<GridItem advice={currentAdvice} />
-			<RandomAdviceButton handleClick={randomAdviceId} />
-			<div>{index}</div>
+			<SingleItem advice={currentAdvice} />
+			<RandomAdviceButton handleClick={() => setIndex((prev) => prev + 1)} />
 		</div>
 	)
 }
