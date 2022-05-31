@@ -19,7 +19,14 @@ export const getAllAdviceData = async () => {
 
 export const getOneAdviceData = async (id) => {
 	let advice = {}
+	console.log(id)
 	const adviceRef = ref(db, "advice/" + id.toString())
+	try {
+		const snapshot = await get(adviceRef)
+		advice = snapshot.exists() ? snapshot.val() : console.log("No data")
+	} catch (err) {
+		console.log(err)
+	}
 
 	return advice
 }
