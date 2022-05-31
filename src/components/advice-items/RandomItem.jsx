@@ -1,8 +1,8 @@
-import SingleItem from "./SingleItem"
 import RandomAdviceButton from "../buttons/RandomAdviceButton"
 import { getOneAdviceData } from "@utils/adviceData"
 
 import { useState, useEffect } from "react"
+import GridItem from "./GridItem"
 
 const RandomItem = ({ arr }) => {
 	const [currentAdvice, setCurrentAdvice] = useState({})
@@ -27,7 +27,7 @@ const RandomItem = ({ arr }) => {
 
 	return (
 		<div>
-			<SingleItem advice={currentAdvice} />
+			<GridItem advice={currentAdvice} />
 			<RandomAdviceButton handleClick={() => setIndex((prev) => prev + 1)} />
 		</div>
 	)
