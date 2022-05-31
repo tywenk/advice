@@ -19,6 +19,14 @@ const HoverOptions = ({ text, stars, id }) => {
 		<div className='flex flex-row gap-2'>
 			<CopyButton toCopy={text} />
 			<button onClick={handleStar}>Star ({starCount})</button>
+			<a
+				href={`https://twitter.com/intent/tweet?text=${text}`}
+				title='Share on twitter'
+				data-show-count='false'
+				rel='noopener'
+			>
+				Tweet
+			</a>
 		</div>
 	)
 }

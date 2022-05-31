@@ -17,14 +17,6 @@ const ListItem = ({ advice }) => {
 			<div className='col-span-1'>
 				{isHover && <HoverOptions text={advice.text} stars={advice.stars} id={advice.id} />}
 			</div>
-			<a
-				href={`https://twitter.com/intent/tweet?text=${advice.text}`}
-				title='Share on twitter'
-				data-show-count='false'
-				rel='noopener'
-			>
-				Tweet
-			</a>
 		</div>
 	)
 }

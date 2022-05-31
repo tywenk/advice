@@ -1,15 +1,18 @@
 import GridItem from "../components/advice-items/GridItem"
 import { getAllAdviceData } from "@utils/adviceData"
+import BodyLayout from "@components/layouts/BodyLayout"
 
 const grid = ({ adviceAll }) => {
 	if (adviceAll.length < 0) return <div>Loading...</div>
 
 	return (
-		<div className='grid grid-cols-4 gap-2 p-4'>
-			{adviceAll.map((advice, i) => (
-				<GridItem key={"adviceGrid" + i} advice={advice} />
-			))}
-		</div>
+		<BodyLayout>
+			<div className='grid grid-cols-3 gap-2'>
+				{adviceAll.map((advice, i) => (
+					<GridItem key={"adviceGrid" + i} advice={advice} />
+				))}
+			</div>
+		</BodyLayout>
 	)
 }
 
