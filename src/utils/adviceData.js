@@ -40,3 +40,14 @@ export const incrementStar = async (text, stars, id) => {
 
 	return await update(ref(db), updates)
 }
+
+export const decrementStar = async (text, stars, id) => {
+	const updates = {}
+	updates["/advice/" + id] = {
+		text: text,
+		stars: stars - 1,
+		id: id,
+	}
+
+	return await update(ref(db), updates)
+}

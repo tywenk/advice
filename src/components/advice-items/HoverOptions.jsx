@@ -1,25 +1,41 @@
 import CopyButton from "@components/buttons/CopyButton.jsx"
-import { incrementStar } from "@utils/adviceData"
+import { incrementStar, decrementStar } from "@utils/adviceData"
 import { useState, useEffect } from "react"
 import { useUser } from "../../contexts/UserContext"
 
-const HoverOptions = ({ text, stars, setStarCount, id }) => {
+const HoverOptions = ({ text, stars, setStarCount, id, localSaveData, setSaveData }) => {
 	const [url, setUrl] = useState(null)
 	const [isStarred, setIsStarred] = useState(false)
 	const userId = useUser()
 
 	useEffect(() => {
 		setUrl(window?.location?.hostname.toString() + "/" + id.toString())
-	})
+	}, [])
+
+	useEffect(() => {
+		// console.log(localSaveData["advice" + id])
+		if (localSaveData && localSaveData["advice" + id]) {
+			setIsStarred(true)
+		}
+	}, [localSaveData, id])
 
 	const handleStar = async () => {
 		try {
-			const updated = incrementStar(text, stars, id)
-			await updated
-			setStarCount((starCount) => starCount + 1)
 			const localData = JSON.parse(localStorage.getItem(userId))
-			const saveData = { ...localData, [id]: true }
+			let saveData
+			if (!isStarred) {
+				await incrementStar(text, stars, id)
+				setStarCount((starCount) => (starCount += 1))
+				saveData = { ...localData, ["advice" + id]: true }
+				setIsStarred(true)
+			} else {
+				await decrementStar(text, stars, id)
+				setStarCount((starCount) => (starCount -= 1))
+				saveData = { ...localData, ["advice" + id]: false }
+				setIsStarred(false)
+			}
 			localStorage.setItem(userId, JSON.stringify(saveData))
+			setSaveData(saveData)
 		} catch (err) {
 			console.log(err)
 		}
@@ -38,7 +54,7 @@ const HoverOptions = ({ text, stars, setStarCount, id }) => {
 			</div>
 			<div>
 				<button className='hover:underline' onClick={handleStar}>
-					{isStarred ? <span>Unstar</span> : <span>Star ({kFormatter(stars)})</span>}
+					{isStarred ? <span>Unstar ({kFormatter(stars)})</span> : <span>Star ({kFormatter(stars)})</span>}
 				</button>
 			</div>
 			<div>
