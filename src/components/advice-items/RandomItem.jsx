@@ -1,13 +1,11 @@
 import RandomAdviceButton from "../buttons/RandomAdviceButton"
 import { getOneAdviceData } from "@utils/adviceData"
-
 import { useState, useEffect } from "react"
 import GridItem from "./GridItem"
 
 const RandomItem = ({ arr }) => {
-	const [currentAdvice, setCurrentAdvice] = useState({})
+	const [currentAdvice, setCurrentAdvice] = useState(null)
 	const [index, setIndex] = useState(0)
-	const [reset, setReset] = useState(false)
 
 	useEffect(() => {
 		const fetchAdvice = async () => {
@@ -17,6 +15,7 @@ const RandomItem = ({ arr }) => {
 
 			const id = arr[index]
 			const newAdvice = await getOneAdviceData(id)
+			console.log(newAdvice)
 			setCurrentAdvice(newAdvice)
 		}
 
@@ -24,6 +23,8 @@ const RandomItem = ({ arr }) => {
 			fetchAdvice()
 		}
 	}, [arr, index])
+
+	if (!currentAdvice) return <></>
 
 	return (
 		<div>

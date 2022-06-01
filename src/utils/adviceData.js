@@ -19,7 +19,6 @@ export const getAllAdviceData = async () => {
 
 export const getOneAdviceData = async (id) => {
 	let advice = {}
-	console.log(id)
 	const adviceRef = ref(db, "advice/" + id.toString())
 	try {
 		const snapshot = await get(adviceRef)
@@ -31,7 +30,7 @@ export const getOneAdviceData = async (id) => {
 	return advice
 }
 
-export const incrementStar = (text, stars, id) => {
+export const incrementStar = async (text, stars, id) => {
 	const updates = {}
 	updates["/advice/" + id] = {
 		text: text,
@@ -39,5 +38,5 @@ export const incrementStar = (text, stars, id) => {
 		id: id,
 	}
 
-	return update(ref(db), updates)
+	return await update(ref(db), updates)
 }

@@ -1,6 +1,5 @@
 import CopyButton from "@components/buttons/CopyButton.jsx"
 import { incrementStar } from "@utils/adviceData"
-import { useState } from "react"
 
 const HoverOptions = ({ text, stars, setStarCount, id }) => {
 	const handleStar = async () => {

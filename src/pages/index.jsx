@@ -3,6 +3,8 @@ import BodyLayout from "@components/layouts/BodyLayout"
 import { shuffle } from "lodash"
 
 export default function Home({ arr }) {
+	if (!arr) return <></>
+
 	return (
 		<BodyLayout>
 			<RandomItem arr={arr} />
