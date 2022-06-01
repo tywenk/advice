@@ -26,7 +26,7 @@ const RandomItem = ({ arr }) => {
 	if (!currentAdvice) return <></>
 
 	return (
-		<div className='flex justify-between w-full bg-red-100'>
+		<div className='flex justify-between w-full bg-red-100 grow'>
 			<GridItem advice={currentAdvice} />
 			<RandomAdviceButton handleClick={() => setIndex((prev) => prev + 1)} />
 		</div>

@@ -7,7 +7,7 @@ const NavLink = ({ to, label }) => {
 
 	return (
 		<Link href={to}>
-			<a className={router.pathname == to ? "underline" : ""}>{label}</a>
+			<a className={router.pathname == to ? "underline decoration-2" : "hover:underline decoration-dotted"}>{label}</a>
 		</Link>
 	)
 }

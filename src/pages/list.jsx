@@ -7,13 +7,15 @@ const list = ({ adviceAll }) => {
 
 	return (
 		<BodyLayout>
-			{adviceAll.map((advice, i) => {
-				return (
-					<div key={"advice" + i}>
-						<ListItem advice={advice} />
-					</div>
-				)
-			})}
+			<div>
+				{adviceAll.map((advice, i) => {
+					return (
+						<div key={"advice" + i}>
+							<ListItem advice={advice} />
+						</div>
+					)
+				})}
+			</div>
 		</BodyLayout>
 	)
 }
