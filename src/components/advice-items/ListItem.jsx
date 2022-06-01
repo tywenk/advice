@@ -13,9 +13,13 @@ const ListItem = ({ advice }) => {
 		setIsHover(false)
 	}
 	return (
-		<div onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} className='grid grid-cols-8'>
+		<div
+			onMouseEnter={mouseEnter}
+			onMouseLeave={mouseLeave}
+			className='gap-2 p-1 pl-3 border border-white rounded-lg md:grid md:grid-cols-8 hover:divide-x hover:divide-stone-300 hover:border-stone-300'
+		>
 			<li className='col-span-6'>{advice.text}</li>
-			<div className='col-span-2'>
+			<div className='flex flex-col justify-end col-span-2 pl-3 truncate'>
 				{isHover && <HoverOptions text={advice.text} stars={starCount} setStarCount={setStarCount} id={advice.id} />}
 			</div>
 		</div>

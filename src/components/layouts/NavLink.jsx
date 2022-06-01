@@ -7,7 +7,7 @@ const NavLink = ({ to, label }) => {
 
 	return (
 		<Link href={to}>
-			<a className={router.pathname == to ? "font-bold" : ""}>{label}</a>
+			<a className={router.pathname == to ? "underline" : ""}>{label}</a>
 		</Link>
 	)
 }

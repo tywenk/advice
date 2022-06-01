@@ -1,10 +1,12 @@
+import Footer from "./Footer"
 import Navbar from "./Navbar"
 
 const Layout = ({ children }) => {
 	return (
-		<div>
+		<div className='flex flex-col content-between h-screen'>
 			<Navbar />
-			{children}
+			<div className='grow'>{children}</div>
+			<Footer />
 		</div>
 	)
 }

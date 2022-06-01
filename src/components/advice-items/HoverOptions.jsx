@@ -19,24 +19,36 @@ const HoverOptions = ({ text, stars, setStarCount, id }) => {
 		}
 	}
 
+	const kFormatter = (num) => {
+		return Math.abs(num) > 999
+			? Math.sign(num) * (Math.abs(num) / 1000).toFixed(1) + "k"
+			: Math.sign(num) * Math.abs(num)
+	}
+
 	return (
-		<div className='flex flex-row gap-2 text-sm'>
-			<CopyButton toCopy={text + " " + url} />
-			<button className='hover:underline' onClick={handleStar}>
-				Star ({stars})
-			</button>
-			{url && (
-				<a
-					className='hover:underline'
-					href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`}
-					title='Share on twitter'
-					data-show-count='false'
-					target='_blank'
-					rel='noopener noreferrer'
-				>
-					Tweet
-				</a>
-			)}
+		<div className='flex flex-row gap-2 text-sm transition ease-in-out text-stone-500 hover:text-black'>
+			<div>
+				<CopyButton toCopy={text + " " + url} />
+			</div>
+			<div>
+				<button className='hover:underline' onClick={handleStar}>
+					Star ({kFormatter(stars)})
+				</button>
+			</div>
+			<div>
+				{url && (
+					<a
+						className='hover:underline'
+						href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`}
+						title='Share on twitter'
+						data-show-count='false'
+						target='_blank'
+						rel='noopener noreferrer'
+					>
+						Tweet
+					</a>
+				)}
+			</div>
 		</div>
 	)
 }
