@@ -30,7 +30,7 @@ const Footer = () => {
 					103
 				</a>
 			</div>
-			<div>Made by Tywen Kelly</div>
+			<div>Site by Tywen Kelly</div>
 		</div>
 	)
 }
