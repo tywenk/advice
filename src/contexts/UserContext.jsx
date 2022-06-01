@@ -20,7 +20,6 @@ export const UserProvider = ({ children }) => {
 				// Signed in..
 				console.log("signed in anonymously")
 				const uid = res.user.uid
-				console.log(uid)
 				setCurrentUser(uid)
 			})
 			.catch((error) => {

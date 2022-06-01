@@ -1,9 +1,12 @@
 import CopyButton from "@components/buttons/CopyButton.jsx"
 import { incrementStar } from "@utils/adviceData"
 import { useState, useEffect } from "react"
+import { useUser } from "../../contexts/UserContext"
 
 const HoverOptions = ({ text, stars, setStarCount, id }) => {
 	const [url, setUrl] = useState(null)
+	const [isStarred, setIsStarred] = useState(false)
+	const userId = useUser()
 
 	useEffect(() => {
 		setUrl(window?.location?.hostname.toString() + "/" + id.toString())
@@ -14,6 +17,9 @@ const HoverOptions = ({ text, stars, setStarCount, id }) => {
 			const updated = incrementStar(text, stars, id)
 			await updated
 			setStarCount((starCount) => starCount + 1)
+			const localData = JSON.parse(localStorage.getItem(userId))
+			const saveData = { ...localData, [id]: true }
+			localStorage.setItem(userId, JSON.stringify(saveData))
 		} catch (err) {
 			console.log(err)
 		}
@@ -32,7 +38,7 @@ const HoverOptions = ({ text, stars, setStarCount, id }) => {
 			</div>
 			<div>
 				<button className='hover:underline' onClick={handleStar}>
-					Star ({kFormatter(stars)})
+					{isStarred ? <span>Unstar</span> : <span>Star ({kFormatter(stars)})</span>}
 				</button>
 			</div>
 			<div>
