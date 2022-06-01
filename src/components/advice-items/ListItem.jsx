@@ -14,8 +14,8 @@ const ListItem = ({ advice }) => {
 	}
 	return (
 		<div onMouseEnter={mouseEnter} onMouseLeave={mouseLeave} className='grid grid-cols-8'>
-			<li className='col-span-7 hover:underline'>{advice.text}</li>
-			<div className='col-span-1'>
+			<li className='col-span-6'>{advice.text}</li>
+			<div className='col-span-2'>
 				{isHover && <HoverOptions text={advice.text} stars={starCount} setStarCount={setStarCount} id={advice.id} />}
 			</div>
 		</div>

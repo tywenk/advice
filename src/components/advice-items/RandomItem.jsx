@@ -15,7 +15,6 @@ const RandomItem = ({ arr }) => {
 
 			const id = arr[index]
 			const newAdvice = await getOneAdviceData(id)
-			console.log(newAdvice)
 			setCurrentAdvice(newAdvice)
 		}
 

@@ -15,7 +15,11 @@ const CopyButton = ({ toCopy }) => {
 		setIsCopied(true)
 	}
 
-	return <button onClick={handleCopy}>{isCopied ? "Copied" : "Copy"}</button>
+	return (
+		<button className='hover:underline' onClick={handleCopy}>
+			{isCopied ? "Copied" : "Copy"}
+		</button>
+	)
 }
 
 export default CopyButton

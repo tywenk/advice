@@ -2,7 +2,7 @@ import HoverOptions from "@components/advice-items/HoverOptions"
 import { useState } from "react"
 
 const GridItem = ({ advice }) => {
-	const [starCount, setStarCount] = useState(advice.stars)
+	const [starCount, setStarCount] = useState(advice?.stars)
 
 	if (!advice) return <></>
 
