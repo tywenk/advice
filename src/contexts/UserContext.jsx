@@ -11,10 +11,23 @@ export const useUser = () => {
 //provider
 export const UserProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState({})
+	const auth = getAuth()
 
-	// auto login if session cookie is present
+	// auto login
 	useEffect(() => {
-		//setcurrentuser
+		signInAnonymously(auth)
+			.then((res) => {
+				// Signed in..
+				console.log("signed in anonymously")
+				const uid = res.user.uid
+				console.log(uid)
+				setCurrentUser(uid)
+			})
+			.catch((error) => {
+				const errorCode = error.code
+				const errorMessage = error.message
+				console.log(errorMessage, errorCode)
+			})
 	}, [])
 
 	return <UserContext.Provider value={currentUser}>{children}</UserContext.Provider>
