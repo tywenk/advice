@@ -2,11 +2,14 @@ import CopyButton from "@components/buttons/CopyButton.jsx"
 import { incrementStar, decrementStar } from "@utils/adviceData"
 import { useState, useEffect } from "react"
 import { useUser } from "../../contexts/UserContext"
+import { useLocalStorage, useLocalStorageUpdate } from "@contexts/LocalStorageContext"
 
-const HoverOptions = ({ text, stars, setStarCount, id, localSaveData, setSaveData }) => {
+const HoverOptions = ({ text, stars, setStarCount, id }) => {
 	const [url, setUrl] = useState(null)
 	const [isStarred, setIsStarred] = useState(false)
 	const userId = useUser()
+	const localSaveData = useLocalStorage()
+	const setSaveData = useLocalStorageUpdate()
 
 	useEffect(() => {
 		setUrl(window?.location?.hostname.toString() + "/" + id.toString())

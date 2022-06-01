@@ -1,4 +1,4 @@
-import Grid from "../components/advice-items/Grid"
+import GridItem from "../components/advice-items/GridItem"
 import { getAllAdviceData } from "@utils/adviceData"
 import BodyLayout from "@components/layouts/BodyLayout"
 
@@ -7,7 +7,11 @@ const grid = ({ adviceAll }) => {
 
 	return (
 		<BodyLayout>
-			<Grid adviceAll={adviceAll} />
+			<div className='grid grid-cols-2 gap-2 md:grid-cols-3 '>
+				{adviceAll.map((advice, i) => (
+					<GridItem key={"adviceGrid" + i} advice={advice} />
+				))}
+			</div>
 		</BodyLayout>
 	)
 }
