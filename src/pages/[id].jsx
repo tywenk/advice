@@ -2,7 +2,7 @@ import { getOneAdviceData } from "@utils/adviceData"
 import BodyLayout from "@components/layouts/BodyLayout"
 import GridItem from "@components/advice-items/GridItem"
 
-const advice = ({ advice }) => {
+const Advice = ({ advice }) => {
 	if (!advice) return <></>
 
 	return (
@@ -30,4 +30,4 @@ export const getServerSideProps = async ({ query }) => {
 	}
 }
 
-export default advice
+export default Advice

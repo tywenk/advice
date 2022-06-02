@@ -30,4 +30,4 @@ export const getServerSideProps = async () => {
 	}
 }
 
-export default list
+export default List

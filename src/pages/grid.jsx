@@ -32,4 +32,4 @@ export const getServerSideProps = async () => {
 	}
 }
 
-export default grid
+export default Grid
