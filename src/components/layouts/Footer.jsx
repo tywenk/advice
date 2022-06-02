@@ -30,7 +30,12 @@ const Footer = () => {
 					103
 				</a>
 			</div>
-			<div>Site by Tywen Kelly</div>
+			<div>
+				Site by{" "}
+				<a href='https://tywenkelly.com/' target='_blank' rel='noreferrer' className='hover:underline'>
+					Tywen Kelly
+				</a>
+			</div>
 		</div>
 	)
 }

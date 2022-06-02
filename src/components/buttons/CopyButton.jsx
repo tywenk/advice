@@ -17,8 +17,8 @@ const CopyButton = ({ toCopy }) => {
 	}
 
 	return (
-		<button className='text-lg hover:underline' onClick={handleCopy}>
-			{isCopied ? <TbUnlink className='text-green-600' /> : <TbLink />}
+		<button className='align-baseline hover:underline' onClick={handleCopy}>
+			{isCopied ? "copied" : "link"}
 		</button>
 	)
 }

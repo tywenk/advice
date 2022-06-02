@@ -1,13 +1,9 @@
 import React from "react"
 import { useState } from "react"
 
-const FilterItems = () => {
+const FilterItems = ({ starToggle, lengthToggle }) => {
 	const [starFilter, setStarFilter] = useState("none") //"asc", "desc"
 	const [lengthFilter, setLengthFilter] = useState("none")
-
-	const handleStarToggle = () => {}
-
-	const handleLengthToggle = () => {}
 
 	const starButton = () => {
 		if (starFilter === "asc") {
@@ -24,8 +20,8 @@ const FilterItems = () => {
 	return (
 		<div className='flex flex-row w-full p-2 border rounded-xl border-stone-300'>
 			Filter by
-			<button onClick={handleStarToggle}>{starButton()}</button>
-			<button onClick={handleLengthToggle}>Brevity</button>
+			<button onClick={starToggle}>{starButton()}</button>
+			<button onClick={lengthToggle}>Brevity</button>
 		</div>
 	)
 }

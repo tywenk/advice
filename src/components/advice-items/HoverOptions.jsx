@@ -54,41 +54,34 @@ const HoverOptions = ({ text, stars, setStarCount, id }) => {
 	}
 
 	return (
-		<div className='inline-flex flex-row items-center gap-2 transition ease-in-out text-stone-500 hover:text-black'>
-			<div>
-				<CopyButton toCopy={text + " " + url} />
-			</div>
-			<div>
-				<button className='inline-flex items-center hover:underline' onClick={handleStar}>
-					{isStarred ? (
-						<span>
-							<AiFillStar /> ({kFormatter(stars)})
-						</span>
-					) : (
-						<span>
-							<AiOutlineStar /> ({kFormatter(stars)})
-						</span>
+		<div className='flex flex-row justify-between font-mono text-xs align-middle transition ease-in-out text-stone-500 hover:text-black'>
+			<div className='inline-flex flex-row items-center gap-2 transition ease-in-out text-stone-500 hover:text-black'>
+				<div>
+					<button className=' hover:underline' onClick={handleStar}>
+						{isStarred ? <span>unstar({kFormatter(stars)})</span> : <span>star({kFormatter(stars)})</span>}
+					</button>
+				</div>
+				<div>
+					{url && (
+						<a
+							className='hover:underline '
+							href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`}
+							title='Share on twitter'
+							data-show-count='false'
+							target='_blank'
+							rel='noopener noreferrer'
+						>
+							{/* <AiOutlineTwitter /> */}
+							tweet
+						</a>
 					)}
-				</button>
+				</div>
+				<div className='hover:underline'>
+					<Link href={`/${id}`}>open</Link>
+				</div>
 			</div>
 			<div>
-				{url && (
-					<a
-						className='hover:underline'
-						href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`}
-						title='Share on twitter'
-						data-show-count='false'
-						target='_blank'
-						rel='noopener noreferrer'
-					>
-						<AiOutlineTwitter />
-					</a>
-				)}
-			</div>
-			<div className='hover:underline'>
-				<Link href={`/${id}`}>
-					<TbArrowRight className='text-lg hover:cursor-pointer' />
-				</Link>
+				<CopyButton toCopy={url} />
 			</div>
 		</div>
 	)
