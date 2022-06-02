@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { TbLink, TbUnlink } from "react-icons/tb"
 
 const CopyButton = ({ toCopy }) => {
 	const [isCopied, setIsCopied] = useState(false)
@@ -16,8 +17,8 @@ const CopyButton = ({ toCopy }) => {
 	}
 
 	return (
-		<button className='hover:underline' onClick={handleCopy}>
-			{isCopied ? "Copied" : "Copy"}
+		<button className='text-lg hover:underline' onClick={handleCopy}>
+			{isCopied ? <TbUnlink className='text-green-600' /> : <TbLink />}
 		</button>
 	)
 }

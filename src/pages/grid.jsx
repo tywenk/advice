@@ -1,12 +1,18 @@
 import GridItem from "../components/advice-items/GridItem"
 import { getAllAdviceData } from "@utils/adviceData"
 import BodyLayout from "@components/layouts/BodyLayout"
+import FilterItems from "@components/buttons/FilterItems"
 
-const grid = ({ adviceAll }) => {
+const Grid = ({ adviceAll }) => {
 	if (adviceAll.length < 0) return <div>Loading...</div>
+
+	const handleStarToggle = () => {}
+
+	const handleLengthToggle = () => {}
 
 	return (
 		<BodyLayout>
+			<FilterItems starToggle={handleStarToggle} lengthToggle={handleLengthToggle} />
 			<div className='grid grid-cols-2 gap-2 md:grid-cols-3 '>
 				{adviceAll.map((advice, i) => (
 					<GridItem key={"adviceGrid" + i} advice={advice} />

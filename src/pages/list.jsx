@@ -2,7 +2,7 @@ import ListItem from "../components/advice-items/ListItem"
 import { getAllAdviceData } from "@utils/adviceData"
 import BodyLayout from "@components/layouts/BodyLayout"
 
-const list = ({ adviceAll }) => {
+const List = ({ adviceAll }) => {
 	if (adviceAll.length < 0) return <div>Loading...</div>
 
 	return (
@@ -10,9 +10,9 @@ const list = ({ adviceAll }) => {
 			<div>
 				{adviceAll.map((advice, i) => {
 					return (
-						<div key={"advice" + i}>
+						<ul className='list-disc list-outside' key={"advice" + i}>
 							<ListItem advice={advice} />
-						</div>
+						</ul>
 					)
 				})}
 			</div>

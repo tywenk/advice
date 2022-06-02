@@ -1,6 +1,9 @@
 import BodyLayout from "@components/layouts/BodyLayout"
+import initFirebase from "../firebase/initFirebase"
 
-const about = () => {
+initFirebase()
+
+const About = () => {
 	return (
 		<BodyLayout>
 			<div className='flex flex-col gap-3'>

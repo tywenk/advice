@@ -3,6 +3,9 @@ import { incrementStar, decrementStar } from "@utils/adviceData"
 import { useState, useEffect } from "react"
 import { useUser } from "../../contexts/UserContext"
 import { useLocalStorage, useLocalStorageUpdate } from "@contexts/LocalStorageContext"
+import Link from "next/link"
+import { TbArrowRight } from "react-icons/tb"
+import { AiOutlineStar, AiFillStar, AiOutlineTwitter } from "react-icons/ai"
 
 const HoverOptions = ({ text, stars, setStarCount, id }) => {
 	const [url, setUrl] = useState(null)
@@ -51,13 +54,21 @@ const HoverOptions = ({ text, stars, setStarCount, id }) => {
 	}
 
 	return (
-		<div className='flex flex-row gap-2 text-sm transition ease-in-out text-stone-500 hover:text-black'>
+		<div className='inline-flex flex-row items-center gap-2 transition ease-in-out text-stone-500 hover:text-black'>
 			<div>
 				<CopyButton toCopy={text + " " + url} />
 			</div>
 			<div>
-				<button className='hover:underline' onClick={handleStar}>
-					{isStarred ? <span>Unstar ({kFormatter(stars)})</span> : <span>Star ({kFormatter(stars)})</span>}
+				<button className='inline-flex items-center hover:underline' onClick={handleStar}>
+					{isStarred ? (
+						<span>
+							<AiFillStar /> ({kFormatter(stars)})
+						</span>
+					) : (
+						<span>
+							<AiOutlineStar /> ({kFormatter(stars)})
+						</span>
+					)}
 				</button>
 			</div>
 			<div>
@@ -70,9 +81,14 @@ const HoverOptions = ({ text, stars, setStarCount, id }) => {
 						target='_blank'
 						rel='noopener noreferrer'
 					>
-						Tweet
+						<AiOutlineTwitter />
 					</a>
 				)}
+			</div>
+			<div className='hover:underline'>
+				<Link href={`/${id}`}>
+					<TbArrowRight className='text-lg hover:cursor-pointer' />
+				</Link>
 			</div>
 		</div>
 	)

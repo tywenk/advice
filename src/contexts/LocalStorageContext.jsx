@@ -20,7 +20,6 @@ export const LocalStorageProvider = ({ children }) => {
 	// auto login if session cookie is present
 	useEffect(() => {
 		const data = JSON.parse(localStorage.getItem(userId)) || localStorage.getItem(userId)
-		console.log(data)
 		setLocalSaveData(data)
 	}, [userId])
 

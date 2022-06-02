@@ -18,7 +18,6 @@ export const UserProvider = ({ children }) => {
 		signInAnonymously(auth)
 			.then((res) => {
 				// Signed in..
-				console.log("signed in anonymously")
 				const uid = res.user.uid
 				setCurrentUser(uid)
 			})
