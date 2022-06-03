@@ -55,7 +55,7 @@ const Grid = ({ advice }) => {
 				break
 			case "asc":
 				setStarFilter("desc")
-				setFilteredAdvice(adviceByStar.reverse())
+				setFilteredAdvice([...adviceByStar].reverse())
 				break
 			case "desc":
 				setStarFilter("none")
@@ -76,7 +76,7 @@ const Grid = ({ advice }) => {
 				break
 			case "asc":
 				setLengthFilter("desc")
-				setFilteredAdvice(adviceByLength.reverse())
+				setFilteredAdvice([...adviceByLength].reverse())
 				break
 			case "desc":
 				setLengthFilter("none")
