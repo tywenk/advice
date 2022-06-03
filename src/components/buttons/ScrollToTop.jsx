@@ -3,6 +3,7 @@ import { BiUpArrowAlt } from "react-icons/bi"
 
 const ScrollToTop = () => {
 	const [showTopBtn, setShowTopBtn] = useState(false)
+
 	useEffect(() => {
 		window.addEventListener("scroll", () => {
 			if (window.scrollY > 500) {
@@ -12,12 +13,14 @@ const ScrollToTop = () => {
 			}
 		})
 	}, [])
+
 	const goToTop = () => {
 		window.scrollTo({
 			top: 0,
 			behavior: "smooth",
 		})
 	}
+
 	return (
 		<div className='relative '>
 			{showTopBtn && (

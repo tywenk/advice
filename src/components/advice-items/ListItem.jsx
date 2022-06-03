@@ -16,7 +16,7 @@ const ListItem = ({ advice, setAdvice }) => {
 		<div
 			onMouseEnter={mouseEnter}
 			onMouseLeave={mouseLeave}
-			className='p-1 transition ease-in-out md:gap-2 md:pl-6 hover:divide-none md:hover:divide-solid border-stone-50 rounded-xl md:grid md:grid-cols-10 hover:divide-x hover:divide-stone-300 hover:border-stone-300'
+			className='p-1 ml-4 transition ease-in-out md:gap-2 md:pl-6 hover:divide-none md:hover:divide-solid border-stone-50 rounded-xl md:grid md:grid-cols-10 hover:divide-x hover:divide-stone-300 hover:border-stone-300'
 		>
 			<li className='col-span-8'>{advice.text}</li>
 			<div className='flex flex-col justify-center col-span-2 pl-3'>
