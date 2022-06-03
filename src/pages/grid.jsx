@@ -2,12 +2,18 @@ import GridItem from "../components/advice-items/GridItem"
 import { getAllAdviceData } from "@utils/adviceData"
 import BodyLayout from "@components/layouts/BodyLayout"
 import FilterItems from "@components/buttons/FilterItems"
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 
-const Grid = ({ adviceAll }) => {
+const Grid = ({ advice }) => {
+	const [adviceAll, setAdviceAll] = useState([])
 	const [starFilter, setStarFilter] = useState("none") //"asc", "desc"
 	const [lengthFilter, setLengthFilter] = useState("none")
 	const [filteredAdvice, setFilteredAdvice] = useState(adviceAll)
+
+	useEffect(() => {
+		setAdviceAll(advice)
+		setFilteredAdvice(advice)
+	}, [advice])
 
 	const adviceByStar = useMemo(() => {
 		return [...adviceAll].sort((a, b) => {
@@ -81,9 +87,14 @@ const Grid = ({ adviceAll }) => {
 		}
 	}
 
-	if (filteredAdvice.length < 0) return <div>Loading...</div>
+	const handleSetAdvice = (id, increment) => {
+		const toUpdate = adviceAll.find((e) => e.id === id)
+		toUpdate.stars += increment
+		const newAdviceAll = [...adviceAll, toUpdate]
+		setAdviceAll(newAdviceAll)
+	}
 
-	let gridClass = "grid grid-cols-2 gap-2 md:grid-cols-3"
+	if (filteredAdvice.length < 0) return <div>Loading...</div>
 
 	return (
 		<BodyLayout>
@@ -94,9 +105,9 @@ const Grid = ({ adviceAll }) => {
 				lengthFilter={lengthFilter}
 				handleClear={handleClear}
 			/>
-			<div className={gridClass}>
+			<div className='grid grid-cols-2 gap-2 md:grid-cols-3'>
 				{filteredAdvice.map((advice, i) => (
-					<GridItem key={"adviceGrid" + i} advice={advice} />
+					<GridItem key={"adviceGrid" + i} advice={advice} setAdvice={handleSetAdvice} />
 				))}
 			</div>
 		</BodyLayout>
@@ -104,11 +115,11 @@ const Grid = ({ adviceAll }) => {
 }
 
 export const getServerSideProps = async () => {
-	const adviceAll = await getAllAdviceData()
+	const advice = await getAllAdviceData()
 
 	return {
 		props: {
-			adviceAll,
+			advice,
 		},
 	}
 }

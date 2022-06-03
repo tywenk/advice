@@ -4,13 +4,10 @@ import { useState, useEffect } from "react"
 import { useUser } from "../../contexts/UserContext"
 import { useLocalStorage, useLocalStorageUpdate } from "@contexts/LocalStorageContext"
 import Link from "next/link"
-import { TbArrowRight } from "react-icons/tb"
-import { AiOutlineStar, AiFillStar, AiOutlineTwitter } from "react-icons/ai"
 
-const HoverOptions = ({ text, advice }) => {
+const HoverOptions = ({ text, advice, setAdvice }) => {
 	const [url, setUrl] = useState(null)
 	const [isStarred, setIsStarred] = useState(false)
-	const [starCount, setStarCount] = useState(advice.stars)
 	const userId = useUser()
 	const localSaveData = useLocalStorage()
 	const setSaveData = useLocalStorageUpdate()
@@ -27,18 +24,21 @@ const HoverOptions = ({ text, advice }) => {
 			const localData = JSON.parse(localStorage.getItem(userId))
 			let saveData
 			if (!isStarred) {
-				await incrementStar(text, starCount, advice.id)
-				setStarCount((starCount) => (starCount += 1))
+				await incrementStar(text, advice.stars, advice.id)
+
 				saveData = { ...localData, ["advice" + advice.id]: true }
+				localStorage.setItem(userId, JSON.stringify(saveData))
+				setSaveData(saveData)
 				setIsStarred(true)
+				setAdvice(advice.id, 1)
 			} else {
-				await decrementStar(text, starCount, advice.id)
-				setStarCount((starCount) => (starCount -= 1))
+				await decrementStar(text, advice.stars, advice.id)
 				saveData = { ...localData, ["advice" + advice.id]: false }
+				saveData = { ...localData, ["advice" + advice.id]: true }
+				localStorage.setItem(userId, JSON.stringify(saveData))
 				setIsStarred(false)
+				setAdvice(advice.id, -1)
 			}
-			localStorage.setItem(userId, JSON.stringify(saveData))
-			setSaveData(saveData)
 		} catch (err) {
 			console.log(err)
 		}
@@ -55,7 +55,11 @@ const HoverOptions = ({ text, advice }) => {
 			<div className='inline-flex flex-row items-center gap-2 transition ease-in-out text-stone-500 hover:text-black'>
 				<div>
 					<button className=' hover:underline' onClick={handleStar}>
-						{isStarred ? <span>unstar({kFormatter(starCount)})</span> : <span>star({kFormatter(starCount)})</span>}
+						{isStarred ? (
+							<span>unstar({kFormatter(advice.stars)})</span>
+						) : (
+							<span>star({kFormatter(advice.stars)})</span>
+						)}
 					</button>
 				</div>
 				<div>
