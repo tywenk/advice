@@ -2,6 +2,7 @@ import ListItem from "../components/advice-items/ListItem"
 import { getAllAdviceData } from "@utils/adviceData"
 import BodyLayout from "@components/layouts/BodyLayout"
 import { useState, useEffect } from "react"
+import ScrollToTop from "@components/buttons/ScrollToTop"
 
 const List = ({ advice }) => {
 	const [adviceAll, setAdviceAll] = useState([])
@@ -29,6 +30,7 @@ const List = ({ advice }) => {
 					)
 				})}
 			</div>
+			<ScrollToTop />
 		</BodyLayout>
 	)
 }

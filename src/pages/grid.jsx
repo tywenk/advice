@@ -3,6 +3,7 @@ import { getAllAdviceData } from "@utils/adviceData"
 import BodyLayout from "@components/layouts/BodyLayout"
 import FilterItems from "@components/buttons/FilterItems"
 import { useState, useMemo, useEffect } from "react"
+import ScrollToTop from "@components/buttons/ScrollToTop"
 
 const Grid = ({ advice }) => {
 	const [adviceAll, setAdviceAll] = useState([])
@@ -110,6 +111,7 @@ const Grid = ({ advice }) => {
 					<GridItem key={"adviceGrid" + i} advice={advice} setAdvice={handleSetAdvice} />
 				))}
 			</div>
+			<ScrollToTop />
 		</BodyLayout>
 	)
 }
