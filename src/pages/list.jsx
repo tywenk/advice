@@ -1,8 +1,21 @@
 import ListItem from "../components/advice-items/ListItem"
 import { getAllAdviceData } from "@utils/adviceData"
 import BodyLayout from "@components/layouts/BodyLayout"
+import { useState, useEffect } from "react"
 
-const List = ({ adviceAll }) => {
+const List = ({ advice }) => {
+	const [adviceAll, setAdviceAll] = useState([])
+	useEffect(() => {
+		setAdviceAll(advice)
+	}, [advice])
+
+	const handleSetAdvice = (id, increment) => {
+		const toUpdate = adviceAll.find((e) => e.id === id)
+		toUpdate.stars += increment
+		const newAdviceAll = [...adviceAll, toUpdate]
+		setAdviceAll(newAdviceAll)
+	}
+
 	if (adviceAll.length < 0) return <div>Loading...</div>
 
 	return (
@@ -11,7 +24,7 @@ const List = ({ adviceAll }) => {
 				{adviceAll.map((advice, i) => {
 					return (
 						<ul className='list-disc list-outside' key={"advice" + i}>
-							<ListItem advice={advice} />
+							<ListItem advice={advice} setAdvice={handleSetAdvice} />
 						</ul>
 					)
 				})}
@@ -25,7 +38,7 @@ export const getStaticProps = async () => {
 
 	return {
 		props: {
-			adviceAll: advice,
+			advice: advice,
 		},
 		revalidate: 10,
 	}

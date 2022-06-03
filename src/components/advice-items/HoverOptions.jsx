@@ -81,7 +81,7 @@ const HoverOptions = ({ text, advice, setAdvice }) => {
 					<Link href={`/${advice.id}`}>open</Link>
 				</div>
 			</div>
-			<div>
+			<div className='ml-2'>
 				<CopyButton toCopy={url} />
 			</div>
 		</div>
